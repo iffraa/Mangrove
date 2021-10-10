@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.app.mangrove.view.fragment.MainFragment"
+        android:label=""
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_main_to_login"
+            app:destination="@id/login_nav" />
+        <action
+            android:id="@+id/action_main_to_tour"
+            app:destination="@id/tour_nav" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_application"
+        android:name="com.app.mangrove.view.fragment.UnitApplicationFragment"
+        android:label=""
+        tools:layout="@layout/fragment_unit_form">
+        <argument
+            android:name="@string/margin_top"
+            android:defaultValue="100"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_unit_app_to_tour"
+            app:destination="@id/nav_tour" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.app.mangrove.view.fragment.ContactUsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_contact_us">
+        <action
+            android:id="@+id/action_contact_to_tour"
+            app:destination="@id/nav_tour" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.app.mangrove.view.fragment.AboutUsFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about_us">
+        <action
+            android:id="@+id/action_contact_to_tour"
+            app:destination="@id/nav_tour" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.app.mangrove.view.fragment.LoginFragment"
+        android:label=""
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_dashboard"
+            app:destination="@id/nav_dashboard"></action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.app.mangrove.view.fragment.DashboardFragment"
+        android:label=""
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboard_to_tour"
+            app:destination="@id/nav_tour" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_invite_visitor"
+        android:name="com.app.mangrove.view.fragment.VisitorInviteFragment"
+        android:label=""
+        tools:layout="@layout/fragment_visitor_invite">
+        <action
+            android:id="@+id/action_visitor_to_tour"
+            app:destination="@id/nav_tour" />
+
+        <action
+            android:id="@+id/action_invite_to_list"
+            app:destination="@id/nav_visitor_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_visitor_list"
+        android:name="com.app.mangrove.view.fragment.VisitorsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_visitors"></fragment>
+
+    <fragment
+        android:id="@+id/nav_tour"
+        android:name="com.app.mangrove.view.fragment.HomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_tour"
+            app:destination="@id/nav_tour" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_reservation"
+        android:name="com.app.mangrove.view.fragment.GHReservationFragment"
+        android:label=""
+        tools:layout="@layout/fragment_guest_reservation">
+        <action
+            android:id="@+id/action_guest_to_tour"
+            app:destination="@id/nav_tour" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_services"
+        android:name="com.app.mangrove.view.fragment.ServicesFragment"
+        android:label=""
+        tools:layout="@layout/fragment_services">
+        <action
+            android:id="@+id/action_service_to_form"
+            app:destination="@id/nav_service_form" />
+
+        <action
+            android:id="@+id/action_service_to_tour"
+            app:destination="@id/nav_tour" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_service_form"
+        android:name="com.app.mangrove.view.fragment.CreateServiceFragment"
+        android:label=""
+        tools:layout="@layout/fragment_create_service">
+        <action
+            android:id="@+id/action_serviceForm_to_Listing"
+            app:destination="@id/nav_services" />
+        <action
+            android:id="@+id/action_service_to_tour"
+            app:destination="@id/nav_tour" />
+
+    </fragment>
+
+
+    <!-- login flow fragments -->
+    <navigation
+        android:id="@+id/login_nav"
+        app:startDestination="@id/nav_login">
+        <fragment
+            android:id="@+id/nav_login"
+            android:name="com.app.mangrove.view.fragment.LoginFragment"
+            android:label=""
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_login_to_dashboard"
+                app:destination="@id/nav_dashboard"></action>
+
+        </fragment>
+
+        <fragment
+            android:id="@+id/nav_services"
+            android:name="com.app.mangrove.view.fragment.ServicesFragment"
+            android:label=""
+            tools:layout="@layout/fragment_services">
+            <action
+                android:id="@+id/action_service_to_form"
+                app:destination="@id/nav_service_form" />
+
+            <action
+                android:id="@+id/action_service_to_tour"
+                app:destination="@id/nav_tour" />
+
+        </fragment>
+
+        <fragment
+            android:id="@+id/nav_service_form"
+            android:name="com.app.mangrove.view.fragment.CreateServiceFragment"
+            android:label=""
+            tools:layout="@layout/fragment_create_service" />
+
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/tour_nav"
+        app:startDestination="@id/nav_tour">
+        <fragment
+            android:id="@+id/nav_tour"
+            android:name="com.app.mangrove.view.fragment.HomeFragment"
+            android:label=""
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_home_to_tour"
+                app:destination="@id/nav_tour" />
+
+        </fragment>
+    </navigation>
+
+    <dialog
+        android:id="@+id/nav_logout"
+        android:name="com.app.mangrove.view.fragment.LogoutFragment"
+        tools:layout="@layout/fragment_logout" />
+
+
+</navigation>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/footer_bg">
+
+    <ImageView
+        android:id="@+id/iv_footer"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:src="@drawable/manrove_footer"></ImageView>
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/welcome"
+        android:textColor="@color/white"
+        android:textSize="16sp"></TextView>
+
+    <ImageView
+        android:id="@+id/iv_home"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:src="@drawable/home_icon"></ImageView>
+
+</RelativeLayout>
+
+

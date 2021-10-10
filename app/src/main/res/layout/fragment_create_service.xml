@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_home">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="270dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/m_logo" />
+
+            <Button
+                android:id="@+id/btn_listing"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_bg"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/view_listings"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"></Button>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ll_basic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/blue"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/req_service"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"></Button>
+
+            <include
+                android:id="@+id/progressBar"
+                layout="@layout/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"></include>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/select_service"
+                android:textColor="@color/light_black"
+                android:textSize="16sp"></TextView>
+
+            <Spinner
+                android:id="@+id/sp_services"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rectangle"
+                android:fontFamily="@font/jura_demi_bold"
+                android:inputType="text"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"></Spinner>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/price"
+                android:textColor="@color/light_black"
+                android:textSize="16sp"></TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pckgs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/select_date"
+                android:textColor="@color/light_black"
+                android:textSize="16sp"></TextView>
+
+            <EditText
+                android:id="@+id/et_date"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rectangle"
+                android:focusable="false"
+                android:fontFamily="@font/jura_demi_bold"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"></EditText>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jura_demi_bold"
+                    android:text="@string/profile_img"
+                    android:textColor="@color/light_black"
+                    android:textSize="16sp"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_browse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/jura_demi_bold"
+                    android:text="@string/browse"
+                    android:textColor="@color/grey"
+                    android:textSize="16sp"></TextView>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/comments"
+                android:textColor="@color/light_black"
+                android:textSize="16sp"></TextView>
+
+            <EditText
+                android:id="@+id/et_comments"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/rectangle"
+                android:layout_gravity="left"
+                android:gravity="top"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/jura_demi_bold"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:maxLines="6"
+                android:minLines="1"
+                android:scrollbars="vertical"
+                android:textColor="@color/grey"
+                android:textSize="16sp"></EditText>
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="235dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_bg"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"></Button>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/rl_footer"
+        layout="@layout/footer"></include>
+
+</RelativeLayout>

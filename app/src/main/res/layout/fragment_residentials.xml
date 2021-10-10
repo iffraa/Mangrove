@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:text="@string/bedroom_4"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:layout_marginRight="18dp"
+            android:text="@string/villa"></TextView>
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/sl_4bedroom"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bedroom4_1"
+            app:indicator_visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:text="@string/bedroom_3"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:layout_marginRight="20dp"
+            android:text="@string/villa"></TextView>
+
+       <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/sl_3bedroom"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bedroom3_1"
+            app:indicator_visibility="visible"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:text="@string/bedroom_3"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:layout_marginRight="20dp"
+            android:text="@string/apartments"></TextView>
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/sl_3br_aparts"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bra3_1"
+            app:indicator_visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:text="@string/bedroom_2"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:layout_marginRight="20dp"
+            android:text="@string/apartments"></TextView>
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/sl_2br_aparts"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/br2aparts1"
+            app:indicator_visibility="visible"
+            />
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:text="@string/bedroom_2"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:layout_marginRight="20dp"
+            android:text="@string/banglows"></TextView>
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/sl_2br_banglows"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/br2_bunglow1"
+            app:indicator_visibility="visible"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp"></View>
+
+    </LinearLayout>
+</ScrollView>
