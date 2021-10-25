@@ -1,12 +1,15 @@
 package com.app.mangrove.view.fragment
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +19,16 @@ import com.app.mangrove.model.*
 import com.app.mangrove.util.*
 import com.app.mangrove.view.InviteVisitorListAdapter
 import com.app.mangrove.viewmodel.VisitorInviteViewModel
+import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.mindorks.kotlinFlow.data.api.ApiHelperImpl
 import com.mindorks.kotlinFlow.data.api.RetrofitBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 /**
  * A simple [Fragment] subclass.
@@ -34,6 +42,7 @@ class VisitorInviteFragment : Fragment() {
     private var prefsHelper = SharedPreferencesHelper()
     private lateinit var userData: Data
     private lateinit var visitorListAdapter: InviteVisitorListAdapter
+    private var packages: HashMap<String, ServicePackage> =  hashMapOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,14 +59,13 @@ class VisitorInviteFragment : Fragment() {
 
         userData = prefsHelper.getObject(Constants.USER_DATA)!!
 
-        binding.etVisitorsTime.setOnClickListener(View.OnClickListener {
-            showDateTime(requireContext(), binding.etVisitorsTime)
-        })
+        binding.etVisitorsTime.setOnClickListener {
+            showDateTime()
+        }
 
-        binding.btnVisitors.setOnClickListener(View.OnClickListener {
-            val action = VisitorInviteFragmentDirections.actionInviteToList()
-            Navigation.findNavController(it).navigate(action)
-        })
+        binding.btnVisitors.setOnClickListener {
+            viewVisitorList(it)
+        }
 
         binding.btnSubmit.setOnClickListener(View.OnClickListener {
             val visitors = binding.etVisitorsNum.text
@@ -68,10 +76,11 @@ class VisitorInviteFragment : Fragment() {
                     getString(R.string.visitor_error)
                 )
             } else {
+                hideKeyboard(requireActivity())
                 binding.rlInclude.visibility = View.VISIBLE
-                setupViewModel()
+
                 addVisitor()
-                setupObserver()
+                setupObserver(it)
             }
 
         })
@@ -79,6 +88,31 @@ class VisitorInviteFragment : Fragment() {
         setVisitorList()
         val action = VisitorInviteFragmentDirections.actionVisitorToTour()
         onHomeIconClick(binding.rlFooter.ivHome, action)
+
+    }
+
+    private fun showDateTime() {
+
+        hideKeyboard(requireActivity())
+
+        val d = Date()
+        val dateDialog = SingleDateAndTimePickerDialog.Builder(context)
+
+        dateDialog.title(getString(R.string.select_date))
+            .titleTextColor(getResources().getColor(R.color.white))
+            .minutesStep(1)
+            .minDateRange(d)
+            .backgroundColor(getResources().getColor(R.color.white))
+            .mainColor(getResources().getColor(R.color.blue_text))
+            .listener { date ->
+                val DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm aa"
+                val sdf = SimpleDateFormat(DATE_TIME_FORMAT)
+                val sdate = sdf.format(date)
+                binding.etVisitorsTime.setText(sdate)
+
+                setupViewModel()
+                getPackages()
+            }.display()
 
     }
 
@@ -111,13 +145,14 @@ class VisitorInviteFragment : Fragment() {
                     if (no_of_visitors > 0) {
                         val visitors = ArrayList<Visitor>(no_of_visitors)
                         for (i in 1..no_of_visitors) {
-                            val person = Visitor("0", "", "", "", "", "")
+                            val person = Visitor("0", "", "", "", "",
+                                "",null, "")
                             visitors.add(person)
                         }
                         binding.rvVisitor.visibility = View.VISIBLE
                         binding.btnSubmit.visibility = View.VISIBLE
                         visitorListAdapter?.setVisitorList(
-                            visitors
+                            visitors,packages
                         )
 
                     } else {
@@ -132,26 +167,24 @@ class VisitorInviteFragment : Fragment() {
 
     }
 
-    fun addVisitor() {
-        val visitors: ArrayList<Visitor>? = visitorListAdapter.getData()
-        val servicePackage: ServicePackage = visitorListAdapter.getPackage()
+    private fun addVisitor() {
+        val visitors: ArrayList<Visitor> = visitorListAdapter.getData()
+        var (total, subTotal, discount) = getPriceInfo(visitors)
 
         val token = userData?.token
         val no_of_visitors = binding.etVisitorsNum.text.toString()
         val resort_id = userData?.user?.resort_id.toString()
         val visiting_date_time = binding.etVisitorsTime.text.toString()
-        val sub_total = ""
-        val total_price = servicePackage.price
-        val discount_percentage = servicePackage.discount_percentage
+        val customDiscount = userData.user?.invite_visitor_discount_percentage
         val visitorReq = visitors?.let {
             VisitorRequest(
                 no_of_visitors,
                 resort_id,
                 visiting_date_time,
-                discount_percentage,
-                sub_total,
-                "",
-                total_price,
+                customDiscount,
+                subTotal,
+                discount,
+                total,
                 it
             )
         }
@@ -182,25 +215,18 @@ class VisitorInviteFragment : Fragment() {
         return ""
     }
 
-    private fun setupObserver() {
+    private fun setupObserver(view: View) {
 
         viewModel.getVisitorResponse()?.observe(viewLifecycleOwner, Observer {
 
             when (it.status) {
                 Status.SUCCESS -> {
 
-                        binding.rlInclude.visibility = View.GONE
-                        it.api_data?.message?.let { it1 ->
-                            showAlertDialog(
-                                context as Activity, requireContext().getString(R.string.app_name),
-                                it1
-                            )
-                        }
+                    binding.rlInclude.visibility = View.GONE
+                    showSuccessDialog(view)
 
                 }
-                Status.LOADING -> {
-                    binding.rlInclude.visibility = View.GONE
-                }
+
                 Status.ERROR -> {
                     //Handle Error
                     binding.rlInclude.visibility = View.GONE
@@ -228,4 +254,117 @@ class VisitorInviteFragment : Fragment() {
             .get(VisitorInviteViewModel::class.java)
     }
 
+    private fun showSuccessDialog(view: View) {
+        val builder: AlertDialog.Builder? = activity?.let {
+            AlertDialog.Builder(it)
+        }
+
+        builder?.setMessage(getString(R.string.visitor_invite_success))
+            ?.setTitle(getString(R.string.app_name))?.setPositiveButton(R.string.ok,
+                DialogInterface.OnClickListener { dialog, id ->
+                    viewVisitorList(view)
+                })
+        builder?.create()?.show()
+    }
+
+    private fun viewVisitorList(view: View) {
+        val action = VisitorInviteFragmentDirections.actionInviteToList()
+        Navigation.findNavController(view).navigate(action)
+
+    }
+
+    private fun getPriceInfo(visitors: ArrayList<Visitor>): Triple<String, String, String>
+    {
+        var discount = 0
+        var total = 0
+        var subTotal = 0
+        val serverDiscount = userData.user?.invite_visitor_discount_percentage
+        var customDiscount: Int = serverDiscount?.toInt()!!
+
+        for(visitor in visitors)
+        {
+            val servicePackage = visitor.servicePackage
+            val price = servicePackage?.price
+            subTotal += price?.toInt() ?: 0
+        }
+
+        if (customDiscount != 0) {
+            discount = (customDiscount/100) * subTotal
+        }
+        total = subTotal - discount
+        return Triple(total.toString(), subTotal.toString(), discount.toString())
+    }
+
+
+    private fun getPackages() {
+
+        val visitingDate = binding.etVisitorsTime.text.toString()
+
+        userData.token?.let {
+            viewModel.getMalePackages(
+                it, visitingDate,
+                userData.user?.resort_id.toString()
+            )
+            observeMalePckgVM()
+
+
+            viewModel.getFemalePackages(
+                it,
+                visitingDate,
+                userData.user?.resort_id.toString()
+            )
+            observeFemalePckgVM()
+
+        }
+    }
+
+
+    private fun observeMalePckgVM() {
+
+        viewModel.getMalePackages()?.observe(viewLifecycleOwner, Observer {
+
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.api_data?.let { it1 -> packages.put(Constants.MALE, it1.data) }
+
+                }
+
+                Status.ERROR -> {
+                    //Handle Error
+                    showAlertDialog(
+                        context as Activity,
+                        getString(R.string.app_name),
+                        getString(R.string.pckgs_error)
+                    )
+
+                }
+            }
+        })
+
+    }
+
+
+    private fun observeFemalePckgVM() {
+
+        viewModel.femalePackage?.observe(viewLifecycleOwner, Observer {
+
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.api_data?.let { it1 -> packages.put(Constants.FEMALE, it1.data) }
+
+                }
+
+                Status.ERROR -> {
+                    //Handle Error
+                    showAlertDialog(
+                        context as Activity,
+                        getString(R.string.app_name),
+                        getString(R.string.pckgs_error)
+                    )
+
+                }
+            }
+        })
+
+    }
 }

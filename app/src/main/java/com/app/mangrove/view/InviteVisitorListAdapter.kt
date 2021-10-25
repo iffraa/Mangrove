@@ -49,14 +49,15 @@ class InviteVisitorListAdapter(
     private lateinit var dateTime: String
     private lateinit var servicePackage: ServicePackage
     private lateinit var viewModel: VisitorInviteViewModel
+    private var packages: HashMap<String, ServicePackage> = hashMapOf()
 
 
-    fun setVisitorList(newFamList: ArrayList<Visitor>) {
+    fun setVisitorList(newFamList: ArrayList<Visitor>, vPackages: HashMap<String, ServicePackage>) {
         prefsHelper = SharedPreferencesHelper(context)
         data = prefsHelper.getObject(Constants.USER_DATA)!!
 
         dateTime = visitorFrag.getDateTime()
-        //dateTime = "2021-08-02 04:01 PM"
+        packages = vPackages
 
         enteredData.clear()
         visitorList.clear()
@@ -79,10 +80,10 @@ class InviteVisitorListAdapter(
         val et_name: EditText = holder.view.etVisitorsName
         val et_id: EditText = holder.view.etVisitorsId
         val et_mobile: EditText = holder.view.layoutMobile.etMobile
+        val price: EditText = holder.view.etPay
 
         val cb_male: CheckBox = holder.view.checkboxMale
         val cb_female: CheckBox = holder.view.checkboxFemale
-        val cb_pay: CheckBox = holder.view.cbPay
 
         val btn_visitor: Button = holder.view.btnVisitor
         btn_visitor.setText(context.getString(R.string.visitor) + " " + (position + 1))
@@ -110,70 +111,41 @@ class InviteVisitorListAdapter(
             }
 
 
-        fetchGenderPackage(cb_female, cb_male, visitor)
-        visitor.who_will_pay = getWhoWillPay(cb_pay)
+        fetchGenderPackage(cb_female, cb_male, visitor, price)
+        //  visitor.who_will_pay = getWhoWillPay(cb_pay)
         enteredData.add(visitor)
     }
 
-    fun fetchGenderPackage(femaleChkBx: CheckBox, maleChkBx: CheckBox, visitor: Visitor): String {
-        var gender = Constants.MALE
+    fun fetchGenderPackage(femaleChkBx: CheckBox, maleChkBx: CheckBox, visitor: Visitor, price: EditText): String {
+        var gender = Constants.FEMALE
         var isChkBoxChkd = false
-        setupViewModel()
 
-        femaleChkBx.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        femaleChkBx.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 maleChkBx.setChecked(false)
                 gender = Constants.FEMALE
                 visitor.gender = gender
 
-                binding.progressBar.progressbar.visibility = View.GONE
-                data?.token?.let {
-                    viewModel.getPackages(
-                        it,
-                        dateTime,
-                        gender,
-                        data?.user?.resort_id.toString()
-                    )
-                }
-                setupObserver(visitor)
-                //  data.token?.let { viewModel.getPackages(it,gender,dateTime, data.user?.resort_id.toString()) }
-                //  observeViewModel(viewModel,visitor)
+                setVisitorPackage(gender, visitor, price)
+
             }
 
-        })
+        }
 
-        maleChkBx.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        maleChkBx.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 femaleChkBx.setChecked(false)
                 gender = Constants.MALE
                 visitor.gender = gender
 
-                binding.progressBar.progressbar.visibility = View.GONE
-                data?.token?.let {
-                    viewModel.getPackages(
-                        it,
-                        dateTime,
-                        gender,
-                        data?.user?.resort_id.toString()
-                    )
-                }
-                setupObserver(visitor)
-                // data.token?.let { viewModel.getPackages(it,gender,dateTime, data.user?.resort_id.toString()) }
-                // observeViewModel(viewModel,visitor)
+                setVisitorPackage(gender, visitor, price)
+
             }
-        })
+        }
 
         if (!isChkBoxChkd) {
             visitor.gender = gender
-            data?.token?.let {
-                viewModel.getPackages(
-                    it,
-                    dateTime,
-                    gender,
-                    data?.user?.resort_id.toString()
-                )
-            }
-            setupObserver(visitor)
+            setVisitorPackage(gender, visitor,price)
 
         }
 
@@ -204,32 +176,6 @@ class InviteVisitorListAdapter(
     class VisitorViewHolder(val view: ItemVisitorInviteBinding) : RecyclerView.ViewHolder(view.root)
 
 
-    private fun setupObserver(visitor: Visitor) {
-        viewModel.getPackages()?.observe(visitorFrag, Observer {
-
-            when (it.status) {
-                Status.SUCCESS -> {
-                    binding.progressBar.progressbar.visibility = View.GONE
-                    servicePackage = it.api_data?.data!!
-                    visitor.package_id = servicePackage.id.toString()
-
-                }
-                Status.LOADING -> {
-                    binding.progressBar.progressbar.visibility = View.GONE
-                }
-                Status.ERROR -> {
-                    binding.progressBar.progressbar.visibility = View.GONE
-                    //Handle Error
-                    showAlertDialog(
-                        context as Activity,
-                        context.getString(R.string.app_name),
-                        context.getString(R.string.pckgs_error)
-                    )
-
-                }
-            }
-        })
-    }
 
     private fun setupViewModel() {
 
@@ -245,5 +191,16 @@ class InviteVisitorListAdapter(
             .get(VisitorInviteViewModel::class.java)
     }
 
+    private fun setVisitorPackage(gender: String, visitor: Visitor, etPrice: EditText)
+    {
+        val visitorPckg = packages.get(gender)
+        if(visitorPckg != null) {
+            visitor.package_id = visitorPckg.id.toString()
+            visitor.servicePackage = visitorPckg
+            visitor.price = visitorPckg.price
+
+            etPrice.setText(visitor.price)
+        }
+    }
 }
 

@@ -21,7 +21,7 @@ class CreateServiceViewModel(private val apiHelper: ApiHelper, application: Appl
     private val serviceResponse = MutableLiveData<APIResult<ResortResponse>>()
     private val addServiceResponse = MutableLiveData<APIResult<APIResponse>>()
 
-    fun addService(token: String, request: ServiceRequest) {
+    fun addService(token: String, request: RequestBody) {
         viewModelScope.launch {
             try {
                 addServiceResponse.postValue(APIResult.loading(null))

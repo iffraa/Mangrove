@@ -45,9 +45,6 @@ import android.R.attr.category
 import okhttp3.MultipartBody
 
 
-
-
-
 /**
  * A simple [Fragment] subclass.
  * Use the [AboutUsFragment.newInstance] factory method to
@@ -63,6 +60,7 @@ class CreateServiceFragment : Fragment() {
     private lateinit var userData: Data
     private var prefsHelper = SharedPreferencesHelper()
     private var imgUri: Uri? = null
+    private var cameraImgFile: File? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,32 +78,39 @@ class CreateServiceFragment : Fragment() {
         getServices()
         selectPicture()
 
+        binding.ivCross.setOnClickListener(View.OnClickListener {
+            removeImg()
+        })
+
         binding.etDate.setOnClickListener(View.OnClickListener {
-            showDateTime(requireContext(),binding.etDate)
+            showDateTime(requireContext(), binding.etDate)
         })
 
         binding.btnListing.setOnClickListener(View.OnClickListener {
-            val action = CreateServiceFragmentDirections.actionServiceFormToListing()
-            action?.let { Navigation.findNavController(view).navigate(it) }
-
+            viewServices(it)
         })
 
         binding.btnSubmit.setOnClickListener(View.OnClickListener {
-            val details = binding.etComments.text.toString()
             val date = binding.etDate.text.toString()
+            binding.rlPb.visibility = View.VISIBLE
 
-            if(!packageId.equals("0") && !date.isNullOrEmpty() && !details.isNullOrEmpty()) {
+            if (!packageId.equals("0") && !date.isNullOrEmpty()) {
 
                 val token = userData.token
-                val imageBody = imgUri?.let { it1 -> getImageBody(it1,requireContext()) }
+                var imgFile: File? = null
+                if (!binding.tvBrowse.text.equals(getString(R.string.browse))) {
+                    if (cameraImgFile != null) {
+                        imgFile = cameraImgFile
+                    } else {
+                        val path = imgUri?.let { it1 -> getGalleryImgPath(it1, requireContext()) }
+                        imgFile = File(path)
+                    }
+                }
+                var request = getRequest(imgFile)
 
-                val request = ServiceRequest(serviceId, packageId,details,date, imageBody)
-
-                token?.let { it1 -> viewModel.addService(it1,request) }
-                setServiceCreationObserver()
-            }
-            else
-            {
+                token?.let { it1 -> viewModel.addService(it1, request) }
+                setServiceCreationObserver(it)
+            } else {
                 showAlertDialog(
                     context as Activity,
                     getString(R.string.app_name),
@@ -118,28 +123,25 @@ class CreateServiceFragment : Fragment() {
 
         val action = CreateServiceFragmentDirections.actionServiceToTour()
         onHomeIconClick(binding.rlFooter.ivHome, action)
-
     }
 
     private fun selectPicture() {
         binding.tvBrowse.setOnClickListener(View.OnClickListener {
-           // pickImages.launch("image/*")
-           /// val imgHelper = ImageHelper(requireActivity(), this, binding.tvBrowse,takePicture, pickImages)
-         showImgChooserDialog()
+            // pickImages.launch("image/*")
+            /// val imgHelper = ImageHelper(requireActivity(), this, binding.tvBrowse,takePicture, pickImages)
+            showImgChooserDialog()
 
         })
     }
 
 
-    private fun getServices()
-    {
+    private fun getServices() {
         userData = prefsHelper.getObject(Constants.USER_DATA)!!
         userData.token?.let { viewModel.getServices(it) }
         setServicesObserver()
     }
 
-    private fun getPackages(serviceId: String)
-    {
+    private fun getPackages(serviceId: String) {
         userData.token?.let { viewModel.getPackages(it, serviceId) }
         setPckgsObserver()
     }
@@ -152,9 +154,7 @@ class CreateServiceFragment : Fragment() {
                     binding.progressBar.progressbar.visibility = View.GONE
                     populateSpinners()
                 }
-                Status.LOADING -> {
-                    binding.progressBar.progressbar.visibility = View.GONE
-                }
+
                 Status.ERROR -> {
                     //Handle Error
                     binding.progressBar.progressbar.visibility = View.GONE
@@ -259,26 +259,36 @@ class CreateServiceFragment : Fragment() {
 
     }
 
-    private fun setServiceCreationObserver() {
+    fun showSuccessDialog(view: View) {
+        val builder: androidx.appcompat.app.AlertDialog.Builder? = activity?.let {
+            androidx.appcompat.app.AlertDialog.Builder(it)
+        }
+
+        builder?.setMessage(getString(R.string.service_req_success))
+            ?.setTitle(getString(R.string.app_name))?.setPositiveButton(R.string.ok,
+                { dialog, id ->
+                    viewServices(view)
+                })
+        builder?.create()?.show()
+    }
+
+
+    private fun setServiceCreationObserver(view: View) {
         viewModel.getServiceCreationResponse().observe(viewLifecycleOwner, Observer {
 
             when (it.status) {
                 Status.SUCCESS -> {
-                    binding.progressBar.progressbar.visibility = View.GONE
+                    hideKeyboard(requireActivity())
+                    binding.rlPb.visibility = View.GONE
                     val msg = it.api_data?.message
                     if (msg != null) {
-                        showAlertDialog(
-                            context as Activity,
-                            getString(R.string.app_name),msg
-                        )
+                        showSuccessDialog(view)
                     }
                 }
-                Status.LOADING -> {
-                    binding.progressBar.progressbar.visibility = View.GONE
-                }
+
                 Status.ERROR -> {
                     //Handle Error
-                    binding.progressBar.progressbar.visibility = View.GONE
+                    binding.rlPb.visibility = View.GONE
 
                     showAlertDialog(
                         context as Activity,
@@ -352,8 +362,8 @@ class CreateServiceFragment : Fragment() {
         myAlertDialog.setMessage("How do you want to set your picture?")
         myAlertDialog.setPositiveButton("Gallery",
             DialogInterface.OnClickListener { arg0, arg1 ->
-
                 pickImages.launch("image/*")
+                cameraImgFile = null
 
             })
         myAlertDialog.setNegativeButton("Camera",
@@ -365,37 +375,74 @@ class CreateServiceFragment : Fragment() {
 
     fun takePicture() {
         val root =
-            File(Environment.getExternalStorageDirectory(), BuildConfig.APPLICATION_ID + File.separator)
+            File(
+                requireContext().getExternalFilesDir(null),
+                BuildConfig.APPLICATION_ID + File.separator
+            )
+
         root.mkdirs()
         val fname = "img_" + System.currentTimeMillis() + ".jpg"
-        val sdImageMainDirectory = File(root, fname)
+        cameraImgFile = File(root, fname)
         imgUri = FileProvider.getUriForFile(
             Objects.requireNonNull(requireContext()),
-            BuildConfig.APPLICATION_ID + ".provider", sdImageMainDirectory);
-        //imgUri = FileProvider.getUriForFile(requireContext(),
-         //   context?.applicationContext?.packageName + ".provider", sdImageMainDirectory)
+            BuildConfig.APPLICATION_ID + ".provider", cameraImgFile!!
+        );
         takePicture.launch(imgUri)
     }
 
-    val takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
-      //  if (success) {
-            // The image was saved into the given Uri -> do something with it
-           // Picasso.get().load(viewModel.profileImageUri).resize(800,800).into(registerImgAvatar)
+    val takePicture =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
             val path = imgUri?.path
             binding.tvBrowse.setText(path)
-      //  }
-    }
+            binding.ivCross.visibility = View.VISIBLE
+        }
 
     private val pickImages =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let { it ->
-                // The image was saved into the given Uri -> do something with it
-              //  imgUri = uri
+                imgUri = uri
                 binding.tvBrowse.setText(it.path)
+                binding.ivCross.visibility = View.VISIBLE
             }
         }
 
 
+    private fun getRequest(featured_image: File?): RequestBody {
+        val builder: okhttp3.MultipartBody.Builder =
+            okhttp3.MultipartBody.Builder().setType(MultipartBody.FORM)
+
+        builder.addFormDataPart("service_id", serviceId)
+            .addFormDataPart("package_id", packageId)
+            .addFormDataPart("details", binding.etComments.text.toString())
+            .addFormDataPart("date_time", binding.etDate.text.toString())
+
+        if (featured_image != null) {
+            if (featured_image.exists()) {
+
+                builder.addFormDataPart(
+                    "image",
+                    featured_image.getName(),
+                    RequestBody.create(MultipartBody.FORM, featured_image)
+                );
+            }
+        }
+
+
+        val requestBody: RequestBody = builder.build()
+
+        return requestBody
+    }
+
+    fun removeImg() {
+        binding.tvBrowse.setText(getString(R.string.browse))
+        binding.ivCross.visibility = View.GONE
+    }
+
+    fun viewServices(view: View) {
+        val action = CreateServiceFragmentDirections.actionServiceFormToListing()
+        action?.let { Navigation.findNavController(view).navigate(it) }
+
+    }
 }
 
 

@@ -189,18 +189,21 @@
     <string name="comments_serv">Comments</string>
     <string name="view_listings">View Listings</string>
     <string name="view_visitors">View Visitors</string>
-
+    <string name="name">Name:</string>
 
     <string name="in_progress">In-progress</string>
     <string name="rejected">Rejected</string>
     <string name="completed">Completed</string>
     <string name="pending">pending</string>
+    <string name="visitor_price">Price:</string>
+    <string name="visitors_heading">Visitors</string>
 
     <string name="contact_error">Contact number should be of atleast 8 digits.</string>
     <string name="email_error">Invalid email.</string>
     <string name="id_error">Please enter id.</string>
     <string name="lname_error">Please enter last name.</string>
     <string name="fname_error">Please enter first name.</string>
-
+    <string name="service_req_success">SERVICE REQUEST SUBMITTED SUCCESSFULLY.</string>
+    <string name="visitor_invite_success">VISITOR INVITATION REQUEST HAS BEEN SUBMITTED SUCCESSFULLY.</string>
 
 </resources>

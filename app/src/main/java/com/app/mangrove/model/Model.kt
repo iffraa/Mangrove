@@ -61,7 +61,9 @@ data class User(
     val loyalty_points: String?,
     val no_of_family_member: Int?,
     val no_of_extra_family_member: Int?,
-    val invitees: ArrayList<Invitee>?
+    val invitees: ArrayList<Invitee>?,
+    val members: ArrayList<FamilyMember>?
+
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -113,7 +115,8 @@ data class User(
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readValue(Int::class.java.classLoader) as? Int,
-        TODO("invitees")
+        TODO("invitees"),
+        parcel.readArrayList(ArrayList::class.java.classLoader) as ArrayList<FamilyMember>?
     ) {
     }
 
@@ -167,6 +170,7 @@ data class User(
         parcel.writeString(loyalty_points)
         parcel.writeValue(no_of_family_member)
         parcel.writeValue(no_of_extra_family_member)
+        parcel.writeValue(members)
     }
 
     override fun describeContents(): Int {
@@ -217,7 +221,7 @@ data class VisitorRequest(
     var no_of_visitor: String,
     var resort_id: String,
     var visiting_date_time: String,
-    var custom_discount_percentage: Int,
+    var custom_discount_percentage: String?,
     var sub_total: String,
     var discount: String,
     var total_price: String,
@@ -245,11 +249,11 @@ data class Visitor(
     var contact_no: String,
     var id_no: String,
     var gender: String,
-    // val status: String,
+    var price: String,
     var package_id: String,
 
-    //  @SerializedName("package")
-    //  var packagee: ServicePackage?,
+    @SerializedName("package")
+    var servicePackage: ServicePackage?,
     var who_will_pay: String,
     //  val qr_code: String,
     //   val qr_code_download: String
@@ -277,16 +281,6 @@ data class PackageResponse(
 
     val data: ArrayList<ServicePackage>
 )
-
-data class FamilyMember(
-    var id: Int,
-    var name: String,
-    var contact_no: String,
-    val profile_image: String,
-    var birth_date: String,
-    var gender: String,
-
-    )
 
 data class FamilyMemberRequest(
     var member_id: Int,
@@ -419,15 +413,37 @@ data class ServiceEntry(
     var price: String,
     @SerializedName("package")
     var packagee: ServicePackage?
-    )
+)
 
-data class ServiceResponse(val status: Boolean, var message: String, var data: ArrayList<ServiceEntry>)
+data class ServiceResponse(
+    val status: Boolean,
+    var message: String,
+    var data: ArrayList<ServiceEntry>
+)
 
-data class VisitorListResponse(val status: Boolean,
-                                  var message: String,
-                                  var data: VisitorResponse)
+data class VisitorListResponse(
+    val status: Boolean,
+    var message: String,
+    var data: VisitorResponse
+)
 
-data class VisitorResponse(val total_invitees: Int, var today_invitees: Int, var invitees: InviteeResponse)
+data class VisitorResponse(
+    val total_invitees: Int,
+    var today_invitees: Int,
+    var invitees: InviteeResponse
+)
 
-data class InviteeResponse(val data: ArrayList<Invitee>, var total: Int, var count: Int, var per_page: Int,
-    var current_page: Int, var total_pages: Int)
+data class InviteeResponse(
+    val data: ArrayList<Invitee>, var total: Int, var count: Int, var per_page: Int,
+    var current_page: Int, var total_pages: Int
+)
+
+data class FamilyMember(
+    var id: String,
+    var name: String,
+    var contact_no: String,
+    val profile_image: String,
+    var birth_date: String,
+    var gender: String,
+    val qr_code: String,
+)

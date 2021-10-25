@@ -79,7 +79,7 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
         emit(apiService.getCustomerResorts("Bearer " + token))
     }
 
-    override fun postRequest(token: String, request: ServiceRequest) = flow {
+    override fun postRequest(token: String, request: RequestBody) = flow {
         emit(apiService.postServiceRequest("Bearer " + token, request))
     }
 

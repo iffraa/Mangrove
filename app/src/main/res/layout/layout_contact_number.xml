@@ -23,7 +23,7 @@
         android:inputType="number"
         android:lines="1"
         android:background="@android:color/transparent"
-        android:paddingLeft="10dp"
+        android:paddingLeft="1dp"
         android:textColor="@android:color/black"></EditText>
 
 

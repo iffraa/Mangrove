@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.app.mangrove"
-        minSdk 24
+        minSdk 23
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -96,6 +96,7 @@ dependencies {
   //  implementation 'org.apache.commons:commons-io:2.11.0'
     implementation "commons-io:commons-io:+"
 
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

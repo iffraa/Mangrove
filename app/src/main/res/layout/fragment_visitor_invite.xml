@@ -127,6 +127,15 @@
 
             </LinearLayout>
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_visitor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
             <RelativeLayout
                 android:id="@+id/rl_include"
                 android:layout_width="wrap_content"
@@ -141,15 +150,6 @@
                     android:layout_height="wrap_content"></include>
 
             </RelativeLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_visitor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
 
             <Button

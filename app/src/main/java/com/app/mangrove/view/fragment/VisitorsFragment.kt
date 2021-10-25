@@ -74,8 +74,10 @@ class VisitorsFragment : Fragment() {
                         var visitorList = arrayListOf<Visitor>()
 
                         for (data in visitors) {
+                            val price = data.total_price
                             val invitations = data.visitors
                             for (visitor in invitations) {
+                                visitor.price = price.toString()
                                 visitorList.add(visitor)
 
                             }

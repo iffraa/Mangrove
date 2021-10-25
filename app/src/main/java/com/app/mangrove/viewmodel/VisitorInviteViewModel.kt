@@ -27,25 +27,47 @@ import kotlinx.coroutines.launch
 class VisitorInviteViewModel(private val apiHelper: ApiHelper, application: Application): BaseViewModel(application) {
 
     private val visitor_response = MutableLiveData<APIResult<APIResponse>>()
-    private val packages_response = SingleLiveEvent<APIResult<VisitorPackage>>()
+    var malePackage = MutableLiveData<APIResult<VisitorPackage>>()
+    var femalePackage = MutableLiveData<APIResult<VisitorPackage>>()
 
-    fun getPackages(token:String,
-                    date_time: String,
-                    gender: String,
-                    resort_id: String) {
+    fun getMalePackages(token:String,
+                        date_time: String,
+                        resort_id: String) {
         viewModelScope.launch {
-            packages_response.postValue(APIResult.loading(null))
+            malePackage.postValue(APIResult.loading(null))
             apiHelper.getVisitorPackages(token,
                 date_time,
-                gender,
+                Constants.MALE,
                 resort_id)
                 .catch { e ->
                     e.message?.let { it1 -> Log.i("excep", it1) }
-                    packages_response.postValue(APIResult.error(e.toString(), null))
+                    malePackage.postValue(APIResult.error(e.toString(), null))
                 }
                 .collect {
                     Log.i("collect", it.message)
-                    packages_response.postValue(APIResult.success(it))
+                    malePackage.postValue(APIResult.success(it))
+
+                }
+
+        }
+    }
+
+    fun getFemalePackages(token:String,
+                          date_time: String,
+                          resort_id: String) {
+        viewModelScope.launch {
+            femalePackage.postValue(APIResult.loading(null))
+            apiHelper.getVisitorPackages(token,
+                date_time,
+                Constants.FEMALE,
+                resort_id)
+                .catch { e ->
+                    e.message?.let { it1 -> Log.i("excep", it1) }
+                    femalePackage.postValue(APIResult.error(e.toString(), null))
+                }
+                .collect {
+                    Log.i("collect", it.message)
+                    femalePackage.postValue(APIResult.success(it))
 
                 }
 
@@ -55,7 +77,7 @@ class VisitorInviteViewModel(private val apiHelper: ApiHelper, application: Appl
 
     fun addVisitors(token:String, visitors: VisitorRequest) {
         viewModelScope.launch {
-            visitor_response.postValue(APIResult.loading(null))
+            //visitor_response.postValue(APIResult.loading(null))
             apiHelper.addVisitor(token,visitors)
                 .catch { e ->
                     e.message?.let { it1 -> Log.i("excep", it1) }
@@ -74,8 +96,12 @@ class VisitorInviteViewModel(private val apiHelper: ApiHelper, application: Appl
         return visitor_response
     }
 
-    fun getPackages(): LiveData<APIResult<VisitorPackage>> {
-        return packages_response
+    fun getMalePackages(): LiveData<APIResult<VisitorPackage>> {
+        return malePackage
+    }
+
+    fun getFemalePackages(): LiveData<APIResult<VisitorPackage>> {
+        return femalePackage
     }
 
 }

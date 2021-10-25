@@ -18,14 +18,6 @@
         android:textColor="@color/white"
         android:textStyle="bold"></Button>
 
-        <include
-            android:id="@+id/progressBar"
-            layout="@layout/progress_bar"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></include>
-
-
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -85,18 +77,6 @@
                 android:text="@string/price"
                 android:textColor="@color/light_black"></TextView>
 
-            <CheckBox
-                android:id="@+id/cb_pay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/light_black"
-                android:fontFamily="@font/jura_demi_bold"
-                android:paddingLeft="15dp"
-                android:text="@string/pay"
-                android:textColor="@color/light_black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
 
         </LinearLayout>
 
@@ -147,7 +127,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/light_black"
-                    android:checked="true"
                     android:fontFamily="@font/jura_demi_bold"
                     android:text="@string/male"
                     android:textColor="@color/light_black" />
@@ -160,6 +139,7 @@
                     android:buttonTint="@color/light_black"
                     android:fontFamily="@font/jura_demi_bold"
                     android:text="@string/female"
+                    android:checked="true"
                     android:textColor="@color/light_black" />
             </LinearLayout>
 
@@ -171,6 +151,8 @@
                 android:background="@drawable/rectangle"
                 android:fontFamily="@font/jura_demi_bold"
                 android:inputType="number|text"
+                android:focusable="false"
+                android:clickable="false"
                 android:lines="1"></EditText>
 
 

@@ -90,7 +90,7 @@ interface ApiService {
     @POST("customer/service/requests")
     suspend fun postServiceRequest(
         @Header("Authorization") token: String,
-        @Body request: ServiceRequest
+        @Body request: RequestBody
     ): APIResponse
 
     @Headers("Accept: application/json")

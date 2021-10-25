@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/drawable/tab_bg_selector.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/drawable/toolbar_bg.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/drawable/vertical_line.xml" value="0.23148148148148148" />
         <entry key="app/src/main/res/layout-440dpi/item_service.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -51,7 +52,7 @@
         <entry key="app/src/main/res/layout/item_member.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout/item_service.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_visitor.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_visitor_invite.xml" value="0.11145833333333334" />
+        <entry key="app/src/main/res/layout/item_visitor_invite.xml" value="0.165" />
         <entry key="app/src/main/res/layout/layout_contact_number.xml" value="0.15307971014492755" />
         <entry key="app/src/main/res/layout/nav_header_main2.xml" value="0.2006340579710145" />
         <entry key="app/src/main/res/layout/package_item.xml" value="0.1" />

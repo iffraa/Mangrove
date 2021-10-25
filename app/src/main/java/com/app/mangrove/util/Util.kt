@@ -31,6 +31,9 @@ import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 
 
 fun loadImage(view: ImageView, url: String, context: Context) {
@@ -208,51 +211,6 @@ fun showDate(context: Context, editText: EditText) {
 }
 
 
-fun getImageBody(uri: Uri, context: Context): MultipartBody.Part {
-
-    val file = File(getRealPathFromURI_API19(context, uri))
-
-    val requestFile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-
-// MultipartBody.Part is used to send also the actual file name
-    val body: MultipartBody.Part =
-        MultipartBody.Part.createFormData("logo", file.name, requestFile)
-
-    return body
-}
-
-fun getRealPathFromURI_API19(context: Context, uri: Uri): String {
-    var filePath = "";
-    val wholeID = DocumentsContract.getDocumentId(uri);
-
-    // Split at colon, use second item in the array
-    val id = wholeID.split(":")[1];
-
-    val column = arrayOf(MediaStore.Images.Media.DATA)
-
-
-    // where id is equal to
-    val sel = MediaStore.Images.Media._ID + "=?";
-
-    val cursor = context.contentResolver.query(
-        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-        column, sel, arrayOf(id), null
-    )
-
-
-    val columnIndex = cursor?.getColumnIndex(column[0]);
-
-    if (cursor != null) {
-        if (cursor.moveToFirst()) {
-            filePath = columnIndex?.let { cursor.getString(it) }.toString();
-        }
-    }
-    if (cursor != null) {
-        cursor.close()
-    };
-    return filePath;
-}
-
 fun displayServerErrors(errorJson: String, context: Context) {
     var message = ""
     try {
@@ -291,4 +249,29 @@ fun displayServerErrors(errorJson: String, context: Context) {
 
 fun String.isEmailValid(): Boolean {
     return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
+
+
+fun getGalleryImgPath(selectedImageUri: Uri, context: Context): String? {
+
+    val contentResolver = context.contentResolver ?: return null
+
+    // Create file path inside app's data dir
+    val filePath = (context.applicationInfo.dataDir.toString() + File.separator
+            + System.currentTimeMillis())
+
+    val file = File(filePath)
+    try {
+        val inputStream = contentResolver.openInputStream(selectedImageUri) ?: return null
+        val outputStream: OutputStream = FileOutputStream(file)
+        val buf = ByteArray(1024)
+        var len: Int
+        while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+        outputStream.close()
+        inputStream.close()
+    } catch (ignore: IOException) {
+        return null
+    }
+
+    return file.absolutePath
 }

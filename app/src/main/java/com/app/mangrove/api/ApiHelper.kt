@@ -52,7 +52,7 @@ interface ApiHelper {
 
     fun getCustomerResorts(token: String): Flow<ResortResponse>
 
-    fun postRequest(token: String, request: ServiceRequest): Flow<APIResponse>
+    fun postRequest(token: String, request: RequestBody): Flow<APIResponse>
 
     fun getFacilityServices(token: String): Flow<ResortResponse>
 
