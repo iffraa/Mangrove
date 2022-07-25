@@ -65,8 +65,8 @@
     </string>
 
     <string name="sa_code">9665</string>
-    <string name="remaining_days">Remaining Days</string>
-    <string name="expiry_date">Date of Expiry</string>
+    <string name="remaining_days">Remaining Days:</string>
+    <string name="expiry_date">Date of Expiry:</string>
     <string name="start_date">Start Date</string>
     <string name="contact_info">Contact Information</string>
     <string name="personal_info">Personal Information</string>
@@ -131,6 +131,7 @@
     <string name="check_out">Check out Date</string>
     <string name="guest">Guest</string>
     <string name="guest_name">Guest Name</string>
+    <string name="max_visitors">visitors are allowed</string>
 
     <string name="contact_detail">Contact Details</string>
     <string name="oia_tel">Tel : +966-12-6224396</string>
@@ -180,7 +181,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="my">My</string>
     <string name="req_id">Request ID:</string>
-    <string name="req_date_time">Request Date/Time:</string>
+    <string name="req_date_time">Request Date:</string>
     <string name="service">Service:</string>
     <string name="comments">Comments:</string>
     <string name="create">Create New</string>

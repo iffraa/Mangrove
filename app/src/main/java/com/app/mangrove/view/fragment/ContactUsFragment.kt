@@ -56,7 +56,6 @@ class ContactUsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
 
         val action = ContactUsFragmentDirections.actionContactToTour()
-        onHomeIconClick(binding.rlFooter.ivHome, action)
 
     }
 

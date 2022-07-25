@@ -116,4 +116,11 @@ interface ApiService {
     @Headers("Accept: application/json")
     @GET("customer/invite/visitors")
     suspend fun getVisitors(@Header("Authorization") token: String): VisitorListResponse
+
+    @Headers("Accept: application/json")
+    @GET("customer/guest/invite/visitor?")
+    suspend fun getNoOfVisitors(@Header("Authorization") token: String,
+                                @Query("visiting_date_time")visiting_date_time: String,
+                                @Query("resort_id") resort_id: String,
+    ): TotalVisitorsResponse
 }

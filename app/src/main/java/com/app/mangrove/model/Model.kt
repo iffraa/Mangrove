@@ -447,3 +447,19 @@ data class FamilyMember(
     var gender: String,
     val qr_code: String,
 )
+
+data class TotalVisitorsResponse(
+    val status: Boolean,
+    val message: String,
+    val data : TotalVisitors
+)
+
+data class TotalVisitors(
+    val visitor_policy_exist: Boolean,
+    val available: Int,
+    val total_allow: Int,
+    val each_time_limit: Int,
+    val male: Int,
+    val female: Int,
+)
+

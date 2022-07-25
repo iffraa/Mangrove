@@ -246,7 +246,7 @@ class GHReservationFragment : Fragment() {
         activity?.let {
             ArrayAdapter<String>(
                 it,
-                android.R.layout.simple_spinner_item,
+                R.layout.item_spinner,
                 data as MutableList<String>
             )
 

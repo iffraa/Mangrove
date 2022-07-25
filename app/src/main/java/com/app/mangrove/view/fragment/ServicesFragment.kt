@@ -96,12 +96,12 @@ class ServicesFragment : Fragment() {
         binding.rvServices.apply {
             layoutManager = LinearLayoutManager(context)
 
-            addItemDecoration(
+       /*     addItemDecoration(
                 DividerItemDecoration(
                     binding.rvServices.getContext(),
                     DividerItemDecoration.VERTICAL
                 )
-            )
+            )*/
 
             adapter = servicesAdapter
             servicesAdapter.setServicesList(services,context)

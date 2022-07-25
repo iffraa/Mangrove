@@ -7,14 +7,14 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.app.mangrove"
         minSdk 23
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        targetSdk 31
+        versionCode 2
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -97,6 +97,9 @@ dependencies {
     implementation "commons-io:commons-io:+"
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

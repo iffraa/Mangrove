@@ -11,7 +11,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="@dimen/_30sdp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -23,8 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="@string/my"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
+                android:textColor="@color/color_heading"
+                android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"></TextView>
 
             <TextView
@@ -33,10 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_my"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="@font/jura_demi_bold"
                 android:text="@string/dashboard"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
+                android:textColor="@color/color_heading"
+                android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"></TextView>
 
             <RelativeLayout
@@ -93,7 +92,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/jura_semi_bold"
                     android:textColor="@color/white"
                     android:textSize="16dp"></TextView>
 
@@ -108,7 +106,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@color/blue"
-                android:fontFamily="@font/jura_demi_bold"
                 android:text="@string/personal_info"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -120,11 +117,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_info"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -134,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/id_no"
+                        android:text="ID No:"
                         android:textColor="@color/light_black"
                         android:textSize="14sp"
                         android:textStyle="bold"></TextView>
@@ -144,7 +138,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="45dp"
-                        android:text="1234445"
                         android:textColor="@color/blue_text"
                         android:textSize="14sp"
                         android:textStyle="bold"></TextView>
@@ -170,7 +163,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="0966 - 126698"
                         android:textColor="@color/blue_text"
                         android:textSize="14sp"
                         android:textStyle="bold"></TextView>
@@ -186,7 +178,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/email"
+                        android:text="Email:"
                         android:textColor="@color/light_black"
                         android:textSize="14sp"
                         android:textStyle="bold"></TextView>
@@ -196,7 +188,6 @@
                         android:layout_width="190dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="47dp"
-                        android:text="attaulqudoswarsi@gmail.com"
                         android:textColor="@color/blue_text"
                         android:textSize="14sp"
                         android:textStyle="bold"></TextView>
@@ -219,9 +210,8 @@
                 android:layout_height="40dp"
                 android:layout_below="@+id/ll_info"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/blue"
-                android:fontFamily="@font/jura_demi_bold"
                 android:text="@string/contact_info"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -234,8 +224,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_contact"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -254,9 +244,10 @@
                         android:id="@+id/tv_expiry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="@dimen/_18sdp"
                         android:textColor="@color/blue_text"
                         android:textSize="14sp"
+                        android:text=""
                         android:textStyle="bold"></TextView>
 
                 </LinearLayout>
@@ -278,7 +269,8 @@
                         android:id="@+id/tv_days_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="@dimen/_9sdp"
+                        android:text=""
                         android:textColor="@color/blue_text"
                         android:textSize="14sp"
                         android:textStyle="bold"></TextView>
@@ -295,9 +287,8 @@
                 android:layout_height="40dp"
                 android:layout_below="@+id/ll_contact"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/blue"
-                android:fontFamily="@font/jura_demi_bold"
                 android:text="@string/fam_members"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -309,8 +300,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_below="@+id/btn_fam"></androidx.recyclerview.widget.RecyclerView>
 
 

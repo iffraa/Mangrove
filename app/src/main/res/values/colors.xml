@@ -21,4 +21,7 @@
     <color name="pink">#d6a7a7</color>
     <color name="yellow">#FFFF00</color>
 
+    <color name="color_label">#363636</color>
+    <color name="color_heading">#126ba6</color>
+
 </resources>

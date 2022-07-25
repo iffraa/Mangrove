@@ -103,4 +103,8 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
         emit(apiService.getVisitors("Bearer " + token))
     }
 
+    override fun getNoOfVisitors(token: String,visiting_date_time: String,resort_id: String) = flow {
+        emit(apiService.getNoOfVisitors("Bearer " + token, visiting_date_time, resort_id))
+    }
+
 }

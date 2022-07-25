@@ -47,19 +47,19 @@ class ServiceListAdapter(val services: ArrayList<ServiceEntry>) :
         {
             mContext.getString(R.string.completed) ->
             {
-                holder.view.btnService.setBackgroundColor(mContext.getColor(R.color.green))
+                holder.view.tvStatus.setTextColor(mContext.getColor(R.color.green))
             }
             mContext.getString(R.string.pending) ->
             {
-                holder.view.btnService.setBackgroundColor(mContext.getColor(R.color.pink))
+                holder.view.tvStatus.setTextColor(mContext.getColor(R.color.pink))
             }
             mContext.getString(R.string.rejected) ->
             {
-                holder.view.btnService.setBackgroundColor(mContext.getColor(android.R.color.holo_red_dark))
+                holder.view.tvStatus.setTextColor(mContext.getColor(android.R.color.holo_red_dark))
             }
             mContext.getString(R.string.in_progress) ->
             {
-                holder.view.btnService.setBackgroundColor(mContext.getColor(R.color.yellow))
+                holder.view.tvStatus.setTextColor(mContext.getColor(R.color.yellow))
             }
 
 

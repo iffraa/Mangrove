@@ -118,7 +118,7 @@ class DashboardFragment : Fragment() {
             unitNo = ""
 
         binding.tvName.setText(user.name)
-        binding.tvRole.setText(user.role + " - " + getString(R.string.unit) + " " + unitNo)
+        binding.tvRole.setText(user.role)
         binding.tvId.setText(user.id.toString())
         binding.tvMobile.setText(user.contact_no)
         binding.tvEmail.setText(user.email)

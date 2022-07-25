@@ -29,6 +29,28 @@ class VisitorInviteViewModel(private val apiHelper: ApiHelper, application: Appl
     private val visitor_response = MutableLiveData<APIResult<APIResponse>>()
     var malePackage = MutableLiveData<APIResult<VisitorPackage>>()
     var femalePackage = MutableLiveData<APIResult<VisitorPackage>>()
+    var totalVisitors = MutableLiveData<APIResult<TotalVisitorsResponse>>()
+
+    fun getTotalVisitors(token:String,
+                        date_time: String,
+                        resort_id: String) {
+        viewModelScope.launch {
+            totalVisitors.postValue(APIResult.loading(null))
+            apiHelper.getNoOfVisitors(token,
+                date_time,
+                resort_id)
+                .catch { e ->
+                    e.message?.let { it1 -> Log.i("excep", it1) }
+                    totalVisitors.postValue(APIResult.error(e.toString(), null))
+                }
+                .collect {
+                    Log.i("collect", it.message)
+                    totalVisitors.postValue(APIResult.success(it))
+
+                }
+
+        }
+    }
 
     fun getMalePackages(token:String,
                         date_time: String,

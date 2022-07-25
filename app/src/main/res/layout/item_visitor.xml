@@ -9,124 +9,122 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@color/blue"
-        android:orientation="horizontal">
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@color/blue_text"
+
+        >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/_20sdp"
+            android:orientation="horizontal">
 
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/id_profile"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
+                android:orientation="vertical">
 
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/id_profile"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/visi_name"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/visi_contact"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/visi_gender"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/visitor_price"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/visi_name"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/visi_contact"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:text="@{visitor.id_no}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/visi_gender"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"></TextView>
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@{visitor.name}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/visitor_price"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@{visitor.contact_no}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@{visitor.gender}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@{visitor.price}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:text="@{visitor.id_no}"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@{visitor.name}"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@{visitor.contact_no}"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{visitor.gender}"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{visitor.price}"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 </layout>

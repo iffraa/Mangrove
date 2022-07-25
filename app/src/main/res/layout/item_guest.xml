@@ -8,12 +8,13 @@
     <Button
         android:id="@+id/btn_guest"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:background="@color/blue"
         android:fontFamily="@font/jura_semi_bold"
         android:gravity="center"
+        android:textSize="@dimen/_12ssp"
         android:text="@string/guest"
         android:textColor="@color/white"
         android:textStyle="bold"></Button>
@@ -21,66 +22,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
             android:orientation="vertical">
 
 
             <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_76sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/color_label"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/jura_demi_bold"
                 android:gravity="center_vertical"
-                android:text="@string/guest_name"
-                android:textColor="@color/light_black"></TextView>
+                android:text="@string/guest_name"></TextView>
 
             <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_76sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/color_label"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/jura_demi_bold"
                 android:gravity="center_vertical"
-                android:text="@string/id_visi"
-                android:textColor="@color/light_black"></TextView>
+                android:text="@string/id_visi"></TextView>
 
             <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_76sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/color_label"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/jura_demi_bold"
                 android:gravity="center_vertical"
-                android:text="@string/mobile_visi"
-                android:textColor="@color/light_black"></TextView>
+                android:text="@string/mobile_visi"></TextView>
 
             <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_76sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/color_label"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/jura_demi_bold"
                 android:gravity="center_vertical"
-                android:text="@string/gender"
-                android:textColor="@color/light_black"></TextView>
+                android:text="@string/gender"></TextView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="@dimen/_8sdp"
             android:orientation="vertical">
 
 
             <EditText
                 android:id="@+id/et_guest_name"
-                android:layout_width="235dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_185sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:textColor="@color/color_label"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/rectangle"
                 android:fontFamily="@font/jura_demi_bold"
                 android:inputType="text"
@@ -88,9 +94,11 @@
 
             <EditText
                 android:id="@+id/et_guest_id"
-                android:layout_width="235dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_185sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:textColor="@color/color_label"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/rectangle"
                 android:fontFamily="@font/jura_demi_bold"
                 android:inputType="text"
@@ -99,16 +107,17 @@
             <include
                 android:id="@+id/layout_mobile"
                 layout="@layout/layout_contact_number"
-                android:layout_width="235dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/_185sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 ></include>
 
 
             <LinearLayout
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <CheckBox
@@ -119,7 +128,7 @@
                     android:checked="true"
                     android:fontFamily="@font/jura_demi_bold"
                     android:text="@string/male"
-                    android:textColor="@color/light_black" />
+                    android:textColor="@color/color_label" />
 
                 <CheckBox
                     android:id="@+id/checkbox_female"
@@ -129,7 +138,7 @@
                     android:buttonTint="@color/light_black"
                     android:fontFamily="@font/jura_demi_bold"
                     android:text="@string/female"
-                    android:textColor="@color/light_black" />
+                    android:textColor="@color/color_label" />
             </LinearLayout>
 
         </LinearLayout>

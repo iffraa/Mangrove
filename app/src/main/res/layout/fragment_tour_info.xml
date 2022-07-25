@@ -7,14 +7,15 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="@dimen/_20sdp">
 
         <ImageView
             android:id="@+id/iv"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="@dimen/_125sdp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
             android:src="@drawable/circle_image" />
 
         <TextView
@@ -42,24 +43,25 @@
             android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_beauty"
+            android:layout_below="@+id/iv"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
             android:text="@string/about_us_info"
-            android:textColor="@color/light_black"></TextView>
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/_12ssp"></TextView>
 
         <Button
             android:id="@+id/btn_more"
-            android:layout_width="95dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/_115sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_below="@+id/tv_info"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_weight="1"
             android:background="@drawable/btn_bg"
             android:text="@string/more"
-            android:textColor="@android:color/white"></Button>
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"></Button>
 
         <View
             android:layout_width="wrap_content"

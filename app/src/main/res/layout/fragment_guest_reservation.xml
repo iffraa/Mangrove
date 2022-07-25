@@ -9,8 +9,8 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -18,9 +18,10 @@
 
             <ImageView
                 android:id="@+id/iv_logo"
-                android:layout_width="270dp"
-                android:layout_height="70dp"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_140sdp"
                 android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
                 android:src="@drawable/m_logo"></ImageView>
 
             <TextView
@@ -29,11 +30,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_logo"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
                 android:fontFamily="@font/jura_semi_bold"
                 android:text="@string/reservation"
-                android:textColor="@color/grey_text"
-                android:textSize="18sp"
+                android:textColor="@color/color_heading"
+                android:textSize="@dimen/_18ssp"
                 android:textStyle="bold"></TextView>
 
             <LinearLayout
@@ -41,166 +41,172 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:gravity="center_horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="108dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/color_label"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
-                        android:text="@string/select_resort"
-                        android:textColor="@color/light_black"></TextView>
+                        android:text="@string/select_resort"></TextView>
 
                     <TextView
-                        android:layout_width="108dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
+                        android:textSize="@dimen/_10ssp"
                         android:text="@string/check_in"
-                        android:textColor="@color/light_black"></TextView>
+                        android:textColor="@color/color_label"></TextView>
 
                     <TextView
-                        android:layout_width="108dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
+                        android:textSize="@dimen/_10ssp"
                         android:text="@string/check_out"
-                        android:textColor="@color/light_black"></TextView>
+                        android:textColor="@color/color_label"></TextView>
 
                     <TextView
-                        android:layout_width="108dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
                         android:text="@string/available_units"
-                        android:textColor="@color/light_black"></TextView>
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/color_label"></TextView>
 
                     <TextView
-                        android:layout_width="108dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
                         android:text="@string/price"
-                        android:textColor="@color/light_black"></TextView>
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/color_label"></TextView>
 
                     <TextView
-                        android:layout_width="108dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="18dp"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
                         android:text="@string/guests"
-                        android:textColor="@color/light_black"></TextView>
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/color_label"></TextView>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:orientation="vertical">
 
                     <Spinner
                         android:id="@+id/sp_resorts"
-                        android:layout_width="230dp"
-                        android:layout_height="35dp"
+                        android:layout_width="@dimen/_185sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:background="@drawable/rectangle"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/grey_text"
-                        android:textSize="16sp"></Spinner>
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColor="@color/color_label"
+                        android:textSize="@dimen/_11ssp"></Spinner>
 
 
                     <EditText
                         android:id="@+id/et_chk_in"
-                        android:layout_width="230dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="@dimen/_185sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:textColor="@color/color_label"
+                        android:textSize="@dimen/_11ssp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/rectangle"
                         android:focusableInTouchMode="false"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
                         android:inputType="none"
-                        android:paddingLeft="10dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"></EditText>
+                        android:paddingLeft="@dimen/_10sdp"></EditText>
 
 
                     <EditText
                         android:id="@+id/et_chk_out"
-                        android:layout_width="230dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="@dimen/_185sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/rectangle"
                         android:focusableInTouchMode="false"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"></EditText>
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColor="@color/color_label"
+                        android:textSize="@dimen/_11ssp"></EditText>
 
 
                     <Spinner
                         android:id="@+id/sp_units"
-                        android:layout_width="230dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="@dimen/_185sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/rectangle"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
                         android:inputType="date"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:text="1"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp">
+                        android:textColor="@color/color_label"
+                        android:textSize="@dimen/_16ssp">
                         ></Spinner>
 
 
                     <TextView
                         android:id="@+id/tv_price"
-                        android:layout_width="230dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="@dimen/_185sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/rectangle"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"></TextView>
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColor="@color/color_label"
+                        android:textSize="@dimen/_11ssp"></TextView>
 
                     <EditText
                         android:id="@+id/et_guests_no"
-                        android:layout_width="230dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="@dimen/_185sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/rectangle"
                         android:fontFamily="@font/jura_demi_bold"
                         android:gravity="center_vertical"
                         android:inputType="number"
-                        android:paddingLeft="10dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"></EditText>
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColor="@color/color_label"
+                        android:textSize="@dimen/_11ssp"></EditText>
 
                     <TextView
                         android:id="@+id/tv_max_guests"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/jura_demi_bold"
-                        android:textColor="@color/grey_text"></TextView>
+                        android:textColor="@color/color_label"></TextView>
 
 
                 </LinearLayout>
@@ -210,14 +216,16 @@
             <TextView
                 android:id="@+id/tv_payment"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/ll_main"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/jura_demi_bold"
                 android:gravity="center_vertical"
                 android:text="@string/payable"
-                android:textColor="@color/light_black"></TextView>
+                android:textColor="@color/color_label"
+                android:textSize="@dimen/_10ssp"></TextView>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -225,7 +233,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_payment"
-                android:layout_marginTop="10dp"
                 android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
             <include
@@ -238,8 +245,8 @@
 
             <Button
                 android:id="@+id/btn_submit"
-                android:layout_width="240dp"
-                android:layout_height="55dp"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_below="@+id/rv_guest"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -250,6 +257,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:textSize="@dimen/_14ssp"
                 android:visibility="gone"></Button>
 
         </RelativeLayout>

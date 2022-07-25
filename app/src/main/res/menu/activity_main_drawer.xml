@@ -11,12 +11,9 @@
         <item
             android:id="@+id/nav_invite_visitor"
             android:title="@string/invite_visitor" />
-        <item
-            android:id="@+id/nav_reservation"
-            android:title="@string/reservation" />
 
         <item
-            android:id="@+id/nav_services"
+            android:id="@+id/nav_service_form"
             android:title="@string/services"
             />
 
@@ -31,10 +28,6 @@
         <item
             android:id="@+id/nav_terms"
             android:title="@string/terms" />
-
-        <item
-            android:id="@+id/nav_application"
-            android:title="@string/unit_app" />
 
 
         <item

@@ -7,24 +7,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
+
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/slider"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="15dp"
-            />
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginTop="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/tv_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:textColor="@color/navy_blue"
             android:layout_below="@+id/slider"
-            android:textSize="20sp"
+            android:textSize="@dimen/_17ssp"
             android:textStyle="bold"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/_20sdp"
             android:text="@string/facilities"></TextView>
 
 
@@ -34,10 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_heading"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/jura_demi_bold"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_20sdp"
             android:text="@string/about_us_info"
             android:textColor="@color/light_black"></TextView>
 
@@ -45,7 +44,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_55sdp"
             android:layout_below="@+id/tv_info"></View>
 
     </RelativeLayout>

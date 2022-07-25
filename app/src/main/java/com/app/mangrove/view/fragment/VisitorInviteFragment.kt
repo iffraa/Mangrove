@@ -42,7 +42,10 @@ class VisitorInviteFragment : Fragment() {
     private var prefsHelper = SharedPreferencesHelper()
     private lateinit var userData: Data
     private lateinit var visitorListAdapter: InviteVisitorListAdapter
-    private var packages: HashMap<String, ServicePackage> =  hashMapOf()
+    private var visitorPolicyPresent = false
+    private var packages: HashMap<String, ServicePackage> = hashMapOf()
+    private var totalVisitors = 0
+ //   private val testDate = "2022-06-25 04:29 PM"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +59,7 @@ class VisitorInviteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         prefsHelper = context?.let { SharedPreferencesHelper(it) }!!
+        setupViewModel()
 
         userData = prefsHelper.getObject(Constants.USER_DATA)!!
 
@@ -85,6 +89,10 @@ class VisitorInviteFragment : Fragment() {
 
         })
 
+     /*   userData.token?.let {
+            getTotalVisitors(it, testDate)
+
+        }*/
         setVisitorList()
         val action = VisitorInviteFragmentDirections.actionVisitorToTour()
         onHomeIconClick(binding.rlFooter.ivHome, action)
@@ -110,8 +118,10 @@ class VisitorInviteFragment : Fragment() {
                 val sdate = sdf.format(date)
                 binding.etVisitorsTime.setText(sdate)
 
-                setupViewModel()
-                getPackages()
+                userData.token?.let {
+                    getTotalVisitors(it, sdate)
+
+                }
             }.display()
 
     }
@@ -142,24 +152,34 @@ class VisitorInviteFragment : Fragment() {
                     activity?.let { hideKeyboard(it) }
 
                     val no_of_visitors: Int = noOfVisitors.toInt()
+
+                    if (
+                        noOfVisitors.toInt() > totalVisitors) {
+                        showAlertDialog(requireActivity(),getString(R.string.app_name),
+                            totalVisitors.toString() + " " + getString(R.string.max_visitors)
+                        )
+                    }
+                    else{
                     if (no_of_visitors > 0) {
                         val visitors = ArrayList<Visitor>(no_of_visitors)
                         for (i in 1..no_of_visitors) {
-                            val person = Visitor("0", "", "", "", "",
-                                "",null, "")
+                            val person = Visitor(
+                                "0", "", "", "", "",
+                                "", null, "sender"
+                            )
                             visitors.add(person)
                         }
                         binding.rvVisitor.visibility = View.VISIBLE
                         binding.btnSubmit.visibility = View.VISIBLE
                         visitorListAdapter?.setVisitorList(
-                            visitors,packages
+                            visitors, packages
                         )
 
                     } else {
                         binding.rvVisitor.visibility = View.GONE
                         binding.btnSubmit.visibility = View.GONE
 
-                    }
+                    }}
                 }
 
 
@@ -273,23 +293,21 @@ class VisitorInviteFragment : Fragment() {
 
     }
 
-    private fun getPriceInfo(visitors: ArrayList<Visitor>): Triple<String, String, String>
-    {
+    private fun getPriceInfo(visitors: ArrayList<Visitor>): Triple<String, String, String> {
         var discount = 0
         var total = 0
         var subTotal = 0
         val serverDiscount = userData.user?.invite_visitor_discount_percentage
         var customDiscount: Int = serverDiscount?.toInt()!!
 
-        for(visitor in visitors)
-        {
+        for (visitor in visitors) {
             val servicePackage = visitor.servicePackage
             val price = servicePackage?.price
             subTotal += price?.toInt() ?: 0
         }
 
         if (customDiscount != 0) {
-            discount = (customDiscount/100) * subTotal
+            discount = (customDiscount / 100) * subTotal
         }
         total = subTotal - discount
         return Triple(total.toString(), subTotal.toString(), discount.toString())
@@ -298,8 +316,8 @@ class VisitorInviteFragment : Fragment() {
 
     private fun getPackages() {
 
-        val visitingDate = binding.etVisitorsTime.text.toString()
-
+//        binding.etVisitorsTime.setText(testDate)
+        var visitingDate = binding.etVisitorsTime.text.toString()
         userData.token?.let {
             viewModel.getMalePackages(
                 it, visitingDate,
@@ -350,7 +368,16 @@ class VisitorInviteFragment : Fragment() {
 
             when (it.status) {
                 Status.SUCCESS -> {
-                    it.api_data?.let { it1 -> packages.put(Constants.FEMALE, it1.data) }
+                    it.api_data?.let {
+                            it1 -> packages.put(Constants.FEMALE, it1.data)
+                        val num = binding.etVisitorsNum.text.toString()
+
+                        if(num.isNullOrEmpty())
+                            setVisitorList()
+                        else
+                            updateList()
+
+                    }
 
                 }
 
@@ -360,6 +387,79 @@ class VisitorInviteFragment : Fragment() {
                         context as Activity,
                         getString(R.string.app_name),
                         getString(R.string.pckgs_error)
+                    )
+
+                }
+            }
+        })
+
+    }
+
+    private fun updateList() {
+        if (visitorListAdapter != null) {
+            val visitors: ArrayList<Visitor> = visitorListAdapter.getData()
+            val num = binding.etVisitorsNum.text.toString()
+            if (visitors.size > 0 && !num.isNullOrEmpty()) {
+                for (i in 0 until num.toInt()) {
+                    val visitor = visitors.get(i)
+                    val gender = visitor.gender
+                    val servicePackage = packages.get(gender)
+                    val price = servicePackage?.price
+
+                    //update list
+                    visitor.servicePackage = servicePackage
+                    visitor.price = price!!
+
+                    visitorListAdapter.notifyItemChanged(i)
+                }
+
+            }
+        }
+
+    }
+
+    private fun getTotalVisitors(token: String, date: String) {
+        binding.rlInclude.visibility = View.VISIBLE
+        viewModel.getTotalVisitors(token, date, userData.user?.resort_id.toString())
+        observeTotalVisitorsVM()
+    }
+
+    private fun observeTotalVisitorsVM() {
+
+        viewModel.totalVisitors?.observe(viewLifecycleOwner, Observer {
+
+            when (it.status) {
+                Status.SUCCESS -> {
+                    binding.rlInclude.visibility = View.GONE
+
+                    it.api_data?.let {
+                        val response = it.data
+                        visitorPolicyPresent = response.visitor_policy_exist
+                        if (visitorPolicyPresent) {
+                            totalVisitors = response.each_time_limit
+                            val totalMale = response.male
+                            val totalFemale = response.female
+
+                            binding.tvTotalVisitors.visibility = View.VISIBLE
+                            binding.tvTotalVisitors.setText(
+                                totalVisitors.toString() + " " + getString(R.string.max_visitors)
+                                        + ": " + totalMale + " " + Constants.MALE + " & " + totalFemale + " " + Constants.FEMALE
+                            )
+                        }
+
+                        viewModel.totalVisitors.removeObservers(viewLifecycleOwner)
+                        getPackages()
+                    }
+
+                }
+
+                Status.ERROR -> {
+                    binding.rlInclude.visibility = View.GONE
+
+                    showAlertDialog(
+                        context as Activity,
+                        getString(R.string.app_name),
+                        getString(R.string.loading_error)
                     )
 
                 }

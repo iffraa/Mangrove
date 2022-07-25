@@ -31,26 +31,25 @@
             android:paddingLeft="5dip"
             android:text="@{service_package.service_name}"
             android:layout_alignParentLeft="true"
-            android:textSize="14sp"
+            android:textSize="@dimen/_11ssp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/grey_text"
-            android:fontFamily="@font/jura_demi_bold"
+            android:textColor="@color/color_label"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"></CheckedTextView>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_text"
+            android:textColor="@color/color_label"
             android:text="@{service_package.price}"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="20dp"
-            android:textSize="14sp"
+            android:textSize="@dimen/_11ssp"
             android:layout_marginRight="20dp"
             android:gravity="center_vertical"
             android:layout_alignParentRight="true"
-            android:fontFamily="@font/jura_demi_bold"></TextView>
+            ></TextView>
 
     </RelativeLayout>
 </layout>

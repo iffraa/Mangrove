@@ -60,9 +60,10 @@ fun showAlertDialog(activity: Activity, title: String, msg: String) {
 
     builder?.setMessage(msg)
         ?.setTitle(title)?.setPositiveButton(R.string.ok,
-            DialogInterface.OnClickListener { dialog, id ->
+            { dialog, id ->
             })
     builder?.create()?.show()
+
 }
 
 fun CharSequence?.isValidEmail() =

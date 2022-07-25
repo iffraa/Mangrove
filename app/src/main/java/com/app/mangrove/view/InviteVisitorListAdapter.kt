@@ -53,22 +53,25 @@ class InviteVisitorListAdapter(
 
 
     fun setVisitorList(newFamList: ArrayList<Visitor>, vPackages: HashMap<String, ServicePackage>) {
-        prefsHelper = SharedPreferencesHelper(context)
-        data = prefsHelper.getObject(Constants.USER_DATA)!!
+        /* prefsHelper = SharedPreferencesHelper(context)
+         val data_string = prefsHelper.getData(Constants.USER_DATA)
+         val gson = Gson()
+         data = gson.fromJson(data_string, Data::class.java)
 
-        dateTime = visitorFrag.getDateTime()
+         dateTime =  visitorFrag.getDateTime()*/
+
         packages = vPackages
-
         enteredData.clear()
         visitorList.clear()
         visitorList.addAll(newFamList)
+
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VisitorViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        _binding = ItemVisitorInviteBinding.inflate(inflater)
+        _binding = ItemVisitorInviteBinding.inflate(inflater,parent,false)
         return VisitorViewHolder(binding)
     }
 
@@ -84,9 +87,12 @@ class InviteVisitorListAdapter(
 
         val cb_male: CheckBox = holder.view.checkboxMale
         val cb_female: CheckBox = holder.view.checkboxFemale
+       // val cb_pay: CheckBox = holder.view.cbPay
 
         val btn_visitor: Button = holder.view.btnVisitor
         btn_visitor.setText(context.getString(R.string.visitor) + " " + (position + 1))
+
+        price.setText(visitor.price)
 
         et_name.textChanges()
             .debounce(3, TimeUnit.SECONDS)
@@ -99,24 +105,45 @@ class InviteVisitorListAdapter(
             .debounce(3, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { textChanged ->
-                visitor.contact_no = context.getString(R.string.sa_code) + et_mobile.text.toString()
+                visitor.contact_no = et_mobile.text.toString()
             }
 
         et_id.textChanges()
             .debounce(3, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { textChanged ->
-                if (!et_id.text.toString().isEmpty())
-                    visitor.id_no = et_id.text.toString().toInt().toString()
+                if(!et_id.text.toString().isEmpty())
+                    visitor.id_no = et_id.text.toString()
             }
 
-
-        fetchGenderPackage(cb_female, cb_male, visitor, price)
-        //  visitor.who_will_pay = getWhoWillPay(cb_pay)
+        fetchGenderPackage(cb_female,cb_male,visitor,price)
+       // visitor.who_will_pay = getWhoWillPay(cb_pay)
         enteredData.add(visitor)
+
     }
 
-    fun fetchGenderPackage(femaleChkBx: CheckBox, maleChkBx: CheckBox, visitor: Visitor, price: EditText): String {
+    /*   fun setGenderCheck(holder: VisitorViewHolder, visitor: Visitor, position: Int)
+       {
+           holder.view.checkboxFemale.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+               if (isChecked) {
+                   onItemClick!!.onFCheck(visitor, holder.view.etPay);
+
+               }
+
+           })
+
+           holder.view.checkboxMale.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+               if (isChecked) {
+                   onItemClick!!.onMCheck(visitor, holder.view.etPay);
+
+               }
+
+           })
+
+       }*/
+
+
+    fun fetchGenderPackage(femaleChkBx: CheckBox, maleChkBx: CheckBox,visitor: Visitor, price: EditText): String {
         var gender = Constants.FEMALE
         var isChkBoxChkd = false
 
@@ -128,6 +155,8 @@ class InviteVisitorListAdapter(
 
                 setVisitorPackage(gender, visitor, price)
 
+                //  data.token?.let { viewModel.getPackages(it,gender,dateTime, data.user?.resort_id.toString()) }
+                //  observeViewModel(viewModel,visitor,price, position, holder)
             }
 
         }
@@ -139,56 +168,35 @@ class InviteVisitorListAdapter(
                 visitor.gender = gender
 
                 setVisitorPackage(gender, visitor, price)
-
             }
         }
 
-        if (!isChkBoxChkd) {
-            visitor.gender = gender
+        if(!isChkBoxChkd) {
+
+            if(visitor.gender.isNullOrEmpty())
+            {
+                visitor.gender = gender
+            }
+            else  if(visitor.gender.equals(Constants.MALE))
+            {
+                gender = Constants.MALE
+                femaleChkBx.setChecked(false)
+                maleChkBx.setChecked(true)
+
+            }
+            else  if(visitor.gender.equals(Constants.FEMALE))
+            {
+                gender = Constants.FEMALE
+                femaleChkBx.setChecked(true)
+                maleChkBx.setChecked(false)
+
+            }
+
             setVisitorPackage(gender, visitor,price)
 
         }
 
         return gender
-    }
-
-
-    fun getData(): ArrayList<Visitor> {
-        return enteredData
-    }
-
-    fun getWhoWillPay(cb_pay: CheckBox): String {
-        var who_will_pay = "visitor"
-
-        cb_pay.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                who_will_pay = "sender"
-            }
-        })
-
-        return who_will_pay
-    }
-
-    fun getPackage() = servicePackage
-
-    override fun getItemCount() = visitorList.size
-
-    class VisitorViewHolder(val view: ItemVisitorInviteBinding) : RecyclerView.ViewHolder(view.root)
-
-
-
-    private fun setupViewModel() {
-
-        viewModel = ViewModelProviders.of(
-            visitorFrag,
-            (context as Activity).application?.let {
-                ViewModelFactory(
-                    ApiHelperImpl(RetrofitBuilder.apiService), it
-                )
-
-            }
-        )
-            .get(VisitorInviteViewModel::class.java)
     }
 
     private fun setVisitorPackage(gender: String, visitor: Visitor, etPrice: EditText)
@@ -202,5 +210,43 @@ class InviteVisitorListAdapter(
             etPrice.setText(visitor.price)
         }
     }
+
+    fun getData(): ArrayList<Visitor>
+    {
+        return enteredData
+    }
+
+
+    fun getWhoWillPay(cb_pay: CheckBox): String
+    {
+        var who_will_pay = "sender"
+
+        cb_pay.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                who_will_pay = "visitor"
+            }
+        })
+
+        return who_will_pay
+    }
+
+    fun clear() {
+
+        enteredData.clear()
+        val size: Int = visitorList.size
+        if (size > 0) {
+            for (i in 0 until size) {
+                visitorList.removeAt(i)
+            }
+
+            notifyItemRangeRemoved(0, size)
+            notifyDataSetChanged()
+        }
+    }
+    override fun getItemCount() = visitorList.size
+
+    class VisitorViewHolder(val view: ItemVisitorInviteBinding) : RecyclerView.ViewHolder(view.root)
+
+
 }
 

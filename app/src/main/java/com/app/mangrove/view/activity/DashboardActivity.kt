@@ -138,10 +138,7 @@ class DashboardActivity : AppCompatActivity() {
          val nav_profile = menu.findItem(R.id.nav_dashboard)
          nav_profile.setVisible(false)
 
-         val nav_reservation = menu.findItem(R.id.nav_reservation)
-         nav_reservation.setVisible(false)
-
-         val nav_req_services = menu.findItem(R.id.nav_services)
+         val nav_req_services = menu.findItem(R.id.nav_service_form)
          nav_req_services.setVisible(false)
 
     }
@@ -157,19 +154,13 @@ class DashboardActivity : AppCompatActivity() {
         val nav_logout = menu.findItem(R.id.nav_logout)
         nav_logout.setVisible(true)
 
-        val nav_services = menu.findItem(R.id.nav_services)
-        nav_services.setVisible(true)
-
          val nav_invite = menu.findItem(R.id.nav_invite_visitor)
           nav_invite.setVisible(true)
 
           val nav_profile = menu.findItem(R.id.nav_dashboard)
           nav_profile.setVisible(true)
 
-          val nav_reservation = menu.findItem(R.id.nav_reservation)
-          nav_reservation.setVisible(true)
-
-          val nav_req_services = menu.findItem(R.id.nav_services)
+          val nav_req_services = menu.findItem(R.id.nav_service_form)
           nav_req_services.setVisible(true)
 
 

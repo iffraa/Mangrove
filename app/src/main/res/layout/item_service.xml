@@ -9,119 +9,79 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@color/blue"
-        android:orientation="horizontal">
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@color/blue_text"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp"
 
-        <ImageView
-            android:id="@+id/iv_pic"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:imageUrl="@{service.image}"
-            android:layout_gravity="center_vertical"></ImageView>
+        >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+
+            android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/ll_service"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/req_id"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:layout_marginTop="10dp"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
+                    android:textSize="@dimen/_11ssp"></TextView>
 
-                <TextView
-                    android:id="@+id/tv_req_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="65dp"
-                    android:text="@{service.id}"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
-
-                <Button
-                    android:id="@+id/btn_service"
-                    android:layout_width="85dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center"
-                    android:textSize="12sp"
-                    android:text="@{service.status}"
-                    android:background="@drawable/btn_green"
-                    ></Button>
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/req_date_time"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_11ssp"></TextView>
 
-                <TextView
-                    android:id="@+id/tv_req_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@{service.date_time}"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/service"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
+                    android:textSize="@dimen/_11ssp"></TextView>
+
 
                 <TextView
-                    android:id="@+id/tv_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:text="@{service.service_name}"
+                    android:text="@string/comments"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status: "
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
 
             </LinearLayout>
 
@@ -129,30 +89,71 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
 
                 <TextView
+                    android:id="@+id/tv_req_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/comments"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
+                    android:text="@{service.id}"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+
+                <TextView
+                    android:id="@+id/tv_req_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@{service.date_time}"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+
+                <TextView
+                    android:id="@+id/tv_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:text="@{service.service_name}"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
 
                 <TextView
                     android:id="@+id/tv_comments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="65dp"
-                    android:text="@{service.details}"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"></TextView>
+                    android:text="@{service.details}"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:text="@{service.status}"
+                    android:textSize="@dimen/_11ssp"></TextView>
+
 
             </LinearLayout>
-
         </LinearLayout>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="@dimen/_58sdp"
+            android:layout_height="@dimen/_58sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:imageUrl="@{service.image}"
+            android:scaleType="fitXY"></ImageView>
+
+    </RelativeLayout>
 
 </layout>

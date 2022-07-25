@@ -3,190 +3,195 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <!-- <LinearLayout
+    <!-- <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="5dp"
+         android:gravity="center_horizontal">-->
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal">-->
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/_11ssp"
+            android:text="@string/first_name"
+            android:textColor="@color/color_label"></TextView>
+
+        <TextView
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:text="@string/last_name"
+            android:textColor="@color/color_label"></TextView>
+
+
+        <TextView
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/_11ssp"
+            android:text="@string/email"
+            android:textColor="@color/color_label"></TextView>
+
+        <TextView
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:text="@string/id_profile"
+            android:textColor="@color/color_label"></TextView>
+
+        <TextView
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:text="@string/mobile"
+            android:textColor="@color/color_label"></TextView>
+
+        <TextView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:text="@string/dob"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/color_label"></TextView>
+
+
+        <TextView
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/jura_demi_bold"
+            android:gravity="center_vertical"
+            android:text="@string/gender"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/color_label"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/et_fname"
+            android:layout_width="@dimen/_175sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/jura_demi_bold"
+            android:inputType="text"
+            android:lines="1"
+            android:textColor="@color/color_label"></EditText>
+
+        <EditText
+            android:id="@+id/et_lname"
+            android:layout_width="@dimen/_175sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/jura_demi_bold"
+            android:inputType="text"
+            android:lines="1"
+            android:textColor="@color/color_label"></EditText>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="@dimen/_175sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/jura_demi_bold"
+            android:inputType="textEmailAddress"
+            android:lines="1"
+            android:textColor="@color/color_label"></EditText>
+
+
+        <EditText
+            android:id="@+id/et_id"
+            android:layout_width="@dimen/_175sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/jura_demi_bold"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_label"></EditText>
+
+        <EditText
+            android:id="@+id/et_mobile"
+            android:layout_width="@dimen/_175sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/jura_demi_bold"
+            android:inputType="phone"
+            android:lines="1"
+            android:textColor="@color/color_label"></EditText>
+
+        <EditText
+            android:id="@+id/et_dob"
+            android:layout_width="@dimen/_175sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rectangle"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/jura_demi_bold"
+            android:lines="1"
+            android:textColor="@color/color_label"></EditText>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal">
 
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/first_name"
-                android:textColor="@color/light_black"></TextView>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/last_name"
-                android:textColor="@color/light_black"></TextView>
-
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/email"
-                android:textColor="@color/light_black"></TextView>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/id_profile"
-                android:textColor="@color/light_black"></TextView>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/mobile"
-                android:textColor="@color/light_black"></TextView>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/dob"
-                android:textColor="@color/light_black"></TextView>
-
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jura_demi_bold"
-                android:gravity="center_vertical"
-                android:text="@string/gender"
-                android:textColor="@color/light_black"></TextView>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <EditText
-                android:id="@+id/et_fname"
-                android:layout_width="230dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/jura_demi_bold"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:lines="1"></EditText>
-
-            <EditText
-                android:id="@+id/et_lname"
-                android:layout_width="230dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/jura_demi_bold"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:lines="1"></EditText>
-
-            <EditText
-                android:id="@+id/et_email"
-                android:layout_width="230dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/jura_demi_bold"
-                android:textColor="@android:color/black"
-                android:inputType="textEmailAddress"
-                android:lines="1"></EditText>
-
-
-            <EditText
-                android:id="@+id/et_id"
-                android:layout_width="230dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/jura_demi_bold"
-                android:inputType="number"
-                android:textColor="@android:color/black"
-                android:lines="1"></EditText>
-
-            <EditText
-                android:id="@+id/et_mobile"
-                android:layout_width="230dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/jura_demi_bold"
-                android:textColor="@android:color/black"
-                android:inputType="phone"
-                android:lines="1"></EditText>
-
-            <EditText
-                android:id="@+id/et_dob"
-                android:layout_width="230dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/jura_demi_bold"
-                android:focusableInTouchMode="false"
-                android:textColor="@android:color/black"
-                android:lines="1"></EditText>
-
-
-            <LinearLayout
-                android:layout_width="250dp"
+            <CheckBox
+                android:id="@+id/checkbox_male"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:buttonTint="@color/light_black"
+                android:checked="true"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/male"
+                android:textColor="@color/color_label" />
 
-                <CheckBox
-                    android:id="@+id/checkbox_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/jura_demi_bold"
-                    android:text="@string/male"
-                    android:buttonTint="@color/light_black"
-                    android:checked="true"
-                    android:textColor="@color/light_black" />
-
-                <CheckBox
-                    android:id="@+id/checkbox_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/jura_demi_bold"
-                    android:text="@string/female"
-                    android:layout_marginLeft="30dp"
-                    android:buttonTint="@color/light_black"
-                    android:textColor="@color/light_black" />
-            </LinearLayout>
-
-
+            <CheckBox
+                android:id="@+id/checkbox_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:buttonTint="@color/light_black"
+                android:fontFamily="@font/jura_demi_bold"
+                android:text="@string/female"
+                android:textColor="@color/color_label" />
         </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

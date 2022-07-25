@@ -66,4 +66,6 @@ interface ApiHelper {
 
     fun getVisitors(token: String) : Flow<VisitorListResponse>
 
+    fun getNoOfVisitors(token: String,visiting_date_time: String,resort_id: String) : Flow<TotalVisitorsResponse>
+
 }

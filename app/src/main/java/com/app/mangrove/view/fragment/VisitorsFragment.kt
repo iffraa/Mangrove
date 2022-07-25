@@ -1,11 +1,14 @@
 package com.app.mangrove.view.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,11 +19,10 @@ import com.app.mangrove.model.Status
 import com.app.mangrove.model.Visitor
 import com.app.mangrove.util.*
 import com.app.mangrove.view.VisitorListAdapter
-import com.app.mangrove.viewmodel.ServicesViewModel
 import com.app.mangrove.viewmodel.VisitorsViewModel
 import com.mindorks.kotlinFlow.data.api.ApiHelperImpl
 import com.mindorks.kotlinFlow.data.api.RetrofitBuilder
-import java.util.ArrayList
+
 
 /**
  * A simple [Fragment] subclass.
@@ -101,17 +103,31 @@ class VisitorsFragment : Fragment() {
     }
 
 
+    @SuppressLint("ResourceAsColor")
     private fun setVisitorsList(visitors: ArrayList<Visitor>) {
         binding.rvVisitors.visibility = View.VISIBLE
         binding.rvVisitors.apply {
             layoutManager = LinearLayoutManager(context)
 
+
+           /* val itemDecoration =
+                DividerItemDecoration(
+                    binding.rvVisitors.getContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+
+            itemDecoration.setDrawable(resources.getDrawable(R.drawable.divider))
+
+            addItemDecoration(
+                itemDecoration
+            )
             addItemDecoration(
                 DividerItemDecoration(
                     binding.rvVisitors.getContext(),
                     DividerItemDecoration.VERTICAL
                 )
-            )
+            )*/
+
 
             adapter = visitorAdapter
             visitorAdapter.setVisitorsList(visitors, context)

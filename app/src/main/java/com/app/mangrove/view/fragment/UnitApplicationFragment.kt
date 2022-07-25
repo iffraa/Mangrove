@@ -283,7 +283,7 @@ class UnitApplicationFragment() : Fragment() {
         activity?.let {
             ArrayAdapter<String>(
                 it,
-                android.R.layout.simple_spinner_item,
+                R.layout.item_spinner,
                 roleNames as MutableList<String>
             )
 
@@ -591,7 +591,8 @@ class UnitApplicationFragment() : Fragment() {
                 var errorMsg = getEmptyFieldsMsg()
                 if (errorMsg.isNullOrEmpty()) {
 
-                    binding.rlPB.visibility = View.VISIBLE
+                    binding.scrollView.fullScroll(ScrollView.FOCUS_UP);
+                    binding.progressBar.progressbar.visibility = View.VISIBLE
                     hideKeyboard(requireActivity())
 
                     viewModel.addUnitMember(request)
@@ -620,7 +621,7 @@ class UnitApplicationFragment() : Fragment() {
 
             when (it.status) {
                 Status.SUCCESS -> {
-                    binding.rlPB.visibility = View.GONE
+                    binding.progressBar.progressbar.visibility = View.GONE
                     val response = it.api_data?.data
 
                     it.api_data?.message?.let { it1 ->
@@ -634,7 +635,7 @@ class UnitApplicationFragment() : Fragment() {
 
                 Status.ERROR -> {
                     //Handle Error
-                    binding.rlPB.visibility = View.GONE
+                    binding.progressBar.progressbar.visibility = View.GONE
 
                     val errorJson = it.message
                     if (errorJson != null) {

@@ -50,7 +50,6 @@ class HomeFragment : Fragment() {
             "Hide",
             getString(R.string.facilities),
             getString(R.string.residential),
-            getString(R.string.apply)
 
         )
         val viewPager = binding.viewPager
@@ -80,7 +79,7 @@ class HomeFragment : Fragment() {
         binding: FragmentHomeBinding
     ) :
         FragmentStateAdapter(fragmentManager, lifecycle) {
-        private val NUM_TABS = 4
+        private val NUM_TABS = 3
         var context: Context? = mContext
         val binding = binding
 
@@ -99,16 +98,12 @@ class HomeFragment : Fragment() {
                     setFooter()
                     return FacilitiesFragment()
                 }
-                2 -> {
-                    setFooter()
-                    return ResidentialsFragment()
-                }
 
 
             }
 
             setFooter()
-            return UnitApplicationFragment()
+            return ResidentialsFragment()
         }
 
 

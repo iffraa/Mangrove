@@ -97,14 +97,13 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/btn_bg"
             android:layout_marginTop="30dp"
             android:text="@string/login_btn"
-            android:textStyle="bold"
+            android:textSize="@dimen/_14ssp"
             android:textAllCaps="false"
-            android:fontFamily="@font/jura_demi_bold"
             android:textColor="@color/white"></Button>
 
     </LinearLayout>

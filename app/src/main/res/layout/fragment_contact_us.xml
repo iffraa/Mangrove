@@ -1,82 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:background="@drawable/bg_home"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:layout_marginTop="@dimen/_30sdp"
     tools:context=".view.fragment.ContactUsFragment">
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_home"
+        >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/jura_semi_bold"
-        android:text="@string/contact_detail"
-        android:textColor="@color/navy_blue"
-        android:textSize="22sp"
-        android:textStyle="bold"></TextView>
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/jura_semi_bold"
-        android:text="@string/oia_tel"
-        android:textColor="@color/light_black"
-        android:textSize="18sp"
-        android:textStyle="bold"></TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/jura_semi_bold"
-        android:text="@string/oia_fax"
-        android:textColor="@color/light_black"
-        android:textSize="18sp"
-        android:textStyle="bold"></TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/jura_semi_bold"
-        android:text="@string/po_Box"
-        android:textColor="@color/light_black"
-        android:textSize="18sp"
-        android:textStyle="bold"></TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/jura_semi_bold"
-        android:text="@string/oia_address"
-        android:textColor="@color/light_black"
-        android:textSize="18sp"
-        android:textStyle="bold"></TextView>
-
-    <include
-        android:id="@+id/rl_footer"
-        layout="@layout/footer"></include>
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="310dp" />
 
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="@string/contact_detail"
+                android:textColor="@color/navy_blue"
+                android:textSize="22sp"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/oia_tel"
+                    android:textColor="@color/light_black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/oia_fax"
+                    android:textColor="@color/light_black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/po_Box"
+                    android:textColor="@color/light_black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/oia_address"
+                    android:textColor="@color/light_black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+</RelativeLayout>
